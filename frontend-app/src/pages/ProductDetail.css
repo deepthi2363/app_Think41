@@ -1,35 +1,49 @@
-.product-detail-container {
+.product-detail-page {
+  min-height: 100vh;
+  background-image: url('https://images.unsplash.com/photo-1490103515559-5034a72ad937?auto=format&fit=crop&w=1650&q=80');
+  background-size: cover;
+  background-position: center;
+  padding: 40px;
   display: flex;
   justify-content: center;
-  padding: 40px;
-  background: linear-gradient(to right, #f7f7f7, #e0e0e0);
-  min-height: 100vh;
+  align-items: center;
 }
 
-.product-card-detail {
-  background-color: white;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  width: 400px;
-  text-align: center;
+.product-detail-card {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  width: 100%;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
-.product-card-detail h2 {
+.product-detail-card h2 {
+  font-size: 28px;
   margin-bottom: 20px;
   color: #333;
 }
 
-.product-card-detail p {
-  font-size: 16px;
-  margin: 10px 0;
+.product-detail-card p {
+  font-size: 18px;
+  margin: 8px 0;
   color: #555;
 }
 
-.product-image {
-  width: 100%;
-  max-height: 250px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-top: 20px;
+.description {
+  margin-top: 15px;
+  line-height: 1.6;
+  color: #444;
+}
+
+.loading, .error {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 50px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }

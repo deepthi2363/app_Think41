@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getProductById } from '../services/api';
 import './ProductDetail.css';
 
 function ProductDetail() {
@@ -9,29 +8,22 @@ function ProductDetail() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    getProductById(id)
-      .then((res) => {
-        setProduct(res.data);
-      })
-      .catch((err) => {
-        setError('Failed to fetch product details.');
-      });
+    fetch(`http://localhost:5000/api/products/${id}`)
+      .then(res => res.json())
+      .then(data => setProduct(data))
+      .catch(err => setError('Failed to load product.'));
   }, [id]);
 
-  if (error) return <p className="error-text">{error}</p>;
-  if (!product) return <p className="loading-text">Loading...</p>;
+  if (error) return <div className="error">{error}</div>;
+  if (!product) return <div className="loading">Loading...</div>;
 
   return (
-    <div className="product-detail-container">
-      <div className="product-card-detail">
+    <div className="product-detail-page">
+      <div className="product-detail-card">
         <h2>{product.name}</h2>
-        <p><strong>Price:</strong> ₹ {product.retail_price}</p>
-        <p><strong>Category:</strong> {product.category}</p>
+        <p><strong>Price:</strong> ₹{product.price}</p>
         <p><strong>Department:</strong> {product.department}</p>
-        {/* Add image if available */}
-        {product.image && (
-          <img src={product.image} alt={product.name} className="product-image" />
-        )}
+        <p className="description">{product.description || 'No description available.'}</p>
       </div>
     </div>
   );
