@@ -2,7 +2,11 @@ from flask import Flask, jsonify, request
 from models import db, Product
 import config
 
+from flask_cors import CORS
+
 app = Flask(__name__)
+CORS(app)  # ← This is essential
+
 app.config.from_object(config)
 db.init_app(app)
 
